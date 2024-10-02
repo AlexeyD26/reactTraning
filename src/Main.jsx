@@ -1,7 +1,7 @@
 import { MyButton } from "./components/ui/button/MyButton";
 import { MyInput } from "./components/ui/input/MyInput";
 import { PostList } from "./components/Post/PostList";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 export const Main = (props) => {
     const [posts, setPosts] = useState([
@@ -10,10 +10,13 @@ export const Main = (props) => {
         {id: 3, title: 'Javascript 3', body: 'Description'},
     ]);
 
-    const [title, setTitle] = useState('');
-    const inputRef = useRef(); 
+    const [post, setPost] = useState({title: '', body: ''});
+
+
     const addNewPost = (e) => {
         e.preventDefault();
+        setPosts([...posts, {...post, id: Date.now()}])
+        setPost({title: '', body: ''})
     }
 
     return (
@@ -22,15 +25,16 @@ export const Main = (props) => {
             <MyInput
             type='text'
             placeholder='Название поста'
-            value={title}
-            onChange={(e) => (setTitle(e.target.value))}
+            value={post.title}
+            onChange={(e) => (setPost({...post, title: e.target.value}))}
             />
             <MyInput
             type='text'
             placeholder='Описание поста'
-            ref={inputRef}
+            value={post.body}
+            onChange={(e) => (setPost({...post, body: e.target.value}))}
             />
-            <MyButton>Создать пост</MyButton>
+            <MyButton onClick={addNewPost} >Создать пост</MyButton>
             </form>
             <PostList posts={posts} title={'Посты про Javascript'}/>
         </div>
