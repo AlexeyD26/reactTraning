@@ -1,7 +1,7 @@
-import { MyButton } from "./components/ui/button/MyButton";
-import { MyInput } from "./components/ui/input/MyInput";
 import { PostList } from "./components/Post/PostList";
 import { useState } from "react";
+import { PostForm } from "./components/Post/Postform";
+import { MySelect } from "./components/ui/select/MySelect";
 
 export const Main = (props) => {
     const [posts, setPosts] = useState([
@@ -10,33 +10,27 @@ export const Main = (props) => {
         {id: 3, title: 'Javascript 3', body: 'Description'},
     ]);
 
-    const [post, setPost] = useState({title: '', body: ''});
-
-
-    const addNewPost = (e) => {
-        e.preventDefault();
-        setPosts([...posts, {...post, id: Date.now()}])
-        setPost({title: '', body: ''})
+    const createPost = (newPost) => {
+        setPosts([...posts, newPost])
     }
+
+    const removePost = (post) => {
+        setPosts(posts.filter(p => p.id !== post.id ))
+    }
+
 
     return (
         <div>
-            <form>
-            <MyInput
-            type='text'
-            placeholder='Название поста'
-            value={post.title}
-            onChange={(e) => (setPost({...post, title: e.target.value}))}
-            />
-            <MyInput
-            type='text'
-            placeholder='Описание поста'
-            value={post.body}
-            onChange={(e) => (setPost({...post, body: e.target.value}))}
-            />
-            <MyButton onClick={addNewPost} >Создать пост</MyButton>
-            </form>
-            <PostList posts={posts} title={'Посты про Javascript'}/>
+            <PostForm create={createPost}/>
+            <hr style={{margin: '15px 0'}}/>
+            <div>
+                <MySelect defaultValue={'Сортировка по'}/>
+            </div>
+            {posts.length !== 0 
+            ? 
+            <PostList posts={posts} title={'Посты про Javascript'} remove={removePost} /> 
+            : 
+            <h1 style={{fontSize: '40px'}}>Посты не найдены!</h1>}
         </div>
     )
 }

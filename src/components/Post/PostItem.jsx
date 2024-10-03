@@ -9,7 +9,7 @@ export const PostItem = (props) => {
                 </strong>
                 <p>{props.post.body}</p>
             </div>
-            <button className={style.btn}>Удалить</button>
+            <button className={style.btn} onClick={() => props.remove(props.post)}>Удалить</button>
         </div>
     )
 }
