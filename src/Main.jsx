@@ -3,6 +3,7 @@ import { PostList } from "./components/Post/PostList";
 import { PostForm } from "./components/Post/Postform";
 import {PostFilter} from "./components/Post/PostFilter";
 import { MyModal } from "./components/ui/MyModal/MyModal"
+import { MyButton } from "./components/ui/button/MyButton";
 
 export const Main = (props) => {
     const [posts, setPosts] = useState([
@@ -13,6 +14,7 @@ export const Main = (props) => {
     
 
     const [filter, setFilter] = useState({sort: '', query: ''})
+    const [modal, setModal] = useState(false)
 
 
     const sortedPosts = useMemo(() => {
@@ -29,16 +31,18 @@ export const Main = (props) => {
 
     const createPost = (newPost) => {
         setPosts([...posts, newPost])
+        setModal(false)
     }
 
     const removePost = (post) => {
         setPosts(posts.filter(p => p.id !== post.id ))
     }
 
-
+ 
     return (
         <div>
-            <MyModal>
+            <MyButton onClick={() => setModal(true)} style={{marginTop: '30px'}} >Создать пользователя</MyButton>
+            <MyModal visible={modal} setVisible={setModal}>
             <PostForm create={createPost}/>
             </MyModal>
             <hr style={{margin: '15px 0'}}/>
