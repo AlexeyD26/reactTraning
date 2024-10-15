@@ -26,7 +26,7 @@ code {
 }
 
 .post-enter {
-transform: translateX(-350px);
+transform: translateX(-1440px);
 }
 .post-enter-active {
   transform: translateX(0px);
@@ -36,7 +36,7 @@ transform: translateX(-350px);
   opacity: 1;
 }
 .post-exit-active {
-  transform: translateX(-350px);
+  transform: translateX(-1440px);
   transition: all 500ms ease-in;
 }
 
@@ -50,10 +50,24 @@ transform: translateX(-350px);
 .page {
   padding: 10px;
   border: 1px solid green;
+  border-radius: 20px;
   cursor: pointer;
 }
 
 .page__current {
   border: 2px solid orange;
   font-weight: bold;
+}
+
+
+.navbar {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: lightseagreen ;
+}
+
+.navbar__links {
+  margin-left: auto;
 }

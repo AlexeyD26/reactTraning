@@ -4,6 +4,7 @@
     align-items: center;
     padding: 15px;
     border: 2px solid teal;
+    border-radius: 20px;
     margin-top: 15px;
     background-color: rgb(51, 153, 97);
   }
@@ -15,6 +16,11 @@
     height: 35px;
     background-color: green;
     cursor: pointer;
+  }
+
+  .postBtn {
+    display: flex;
+    gap: 10px;
   }
 
   
