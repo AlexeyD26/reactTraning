@@ -1,4 +1,4 @@
-import { getPagesArray } from "../../../Utils/pages";
+import { getPagesArray } from "../../../Utils/pages";   
 
 export const Pagination = ({totalPages, page, changePage}) => {
     let pagesArray = getPagesArray(totalPages);
