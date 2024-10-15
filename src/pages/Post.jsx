@@ -59,7 +59,7 @@ export const Posts = (props) => {
     return (
         <div>
             <MyButton onClick={fetchPosts} style={{marginRight: '10px'}} >Загрузить посты</MyButton>
-            <MyButton onClick={() => setModal(true)} style={{marginTop: '30px'}} >Создать пользователя</MyButton>
+            <MyButton onClick={() => setModal(true)} style={{marginTop: '30px'}} >Создать пост</MyButton>
             <MyModal visible={modal} setVisible={setModal}>
             <PostForm create={createPost}/>
             </MyModal>
